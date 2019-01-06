@@ -3,13 +3,13 @@ import * as tfvis from '@tensorflow/tfjs-vis';
 
 type ProgressProps = {
     status: string;
-    batch: any;
-    loss: any;
-    accuracy: any;
+    batch: number;
+    loss: number;
+    accuracy: number;
     set: string
 }
 
-class Progress extends Component<ProgressProps, any> {
+class Progress extends Component<ProgressProps> {
     private lossRef = React.createRef<HTMLDivElement>();
     private accuracyRef = React.createRef<HTMLDivElement>();
     private lossValues: any = [[], []];

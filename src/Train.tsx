@@ -6,14 +6,15 @@ import { startTraining } from './model';
 
 type TrainState = {
     status: string;
-    trainBatchCount: any;
-    loss: any;
-    accuracy: any;
+    trainBatchCount: number;
+    loss: number;
+    accuracy: number;
     set: string
 }
+type TrainProps = {}
 
-class Train extends Component<any, TrainState> {
-    constructor(props: any) {
+class Train extends Component<TrainProps, TrainState> {
+    constructor(props: TrainProps) {
         super(props);
         this.state = {
             status: '',
@@ -27,9 +28,11 @@ class Train extends Component<any, TrainState> {
     start = () => {
         startTraining(this.updateState);
     }
+
     updateState = (value: any) => {
         this.setState(value);
     }
+    
     render() {
         return (
             <div className="train">
