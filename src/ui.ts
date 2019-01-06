@@ -35,7 +35,7 @@ export function showTestResults(batch: any, predictions: any, labels: any) {
   imagesElement.innerHTML = '';
   for (let i = 0; i < testExamples; i++) {
     const image = batch.xs.slice([i, 0], [1, batch.xs.shape[1]]);
-
+   console.log(batch.xs);
     const div = document.createElement('div');
     div.className = 'pred-container';
 
@@ -51,7 +51,6 @@ export function showTestResults(batch: any, predictions: any, labels: any) {
 
     pred.className = `pred ${(correct ? 'pred-correct' : 'pred-incorrect')}`;
     pred.innerText = `pred: ${prediction}`;
-
     div.appendChild(pred);
     div.appendChild(canvas);
 
@@ -119,11 +118,11 @@ export function getTrainEpochs() {
 }
 
 export function setTrainButtonCallback(callback: any) {
-  const trainButton = document.getElementById('train');
-  const modelType = document.getElementById('model-type');
-  trainButton.addEventListener('click', () => {
-    trainButton.setAttribute('disabled', 'true');
-    modelType.setAttribute('disabled', 'true');
-    callback();
-  });
+//   const trainButton = document.getElementById('train');
+//   const modelType = document.getElementById('model-type');
+//   trainButton.addEventListener('click', () => {
+//     trainButton.setAttribute('disabled', 'true');
+//     modelType.setAttribute('disabled', 'true');
+//     callback();
+//   });
 }

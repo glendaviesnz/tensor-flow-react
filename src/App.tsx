@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Train from './Train';
 
 class App extends Component {
   render() {
@@ -8,6 +9,7 @@ class App extends Component {
         <header className="App-header">
              Tensor Flow Digit Recognizer - React Interface
         </header>
+        <Train />
       </div>
     );
   }

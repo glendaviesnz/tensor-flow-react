@@ -63,3 +63,13 @@ label {
 .tfjs-example-container {
   padding: 42px;
 }
+
+.train {
+  display: flex;
+  text-align: left;
+  padding: 32px;
+}
+
+.details {
+  margin-right: 32px;
+}
