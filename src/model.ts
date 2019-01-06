@@ -224,9 +224,11 @@ async function train(model: any, setState: any) {
   const testResult = model.evaluate(testData.xs, testData.labels);
   const testAccPercent = testResult[1].dataSync()[0] * 100;
   const finalValAccPercent = valAcc * 100;
-//   ui.logStatus(
-//       `Final validation accuracy: ${finalValAccPercent.toFixed(1)}%; ` +
-//       `Final test accuracy: ${testAccPercent.toFixed(1)}%`);
+  setState({
+    status: 
+      `Final validation accuracy: ${finalValAccPercent.toFixed(1)}% 
+       Final test accuracy: ${testAccPercent.toFixed(1)}%`
+  });
 }
 
 /**

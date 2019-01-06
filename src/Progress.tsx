@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import * as tfvis from '@tensorflow/tfjs-vis';
 
-class Progress extends Component<any, any> {
-    lossRef: any;
-    accuracyRef: any;
-    lossValues: any = [[], []];
-    accuracyValues: any = [[], []];
+type ProgressProps = {
+    status: string;
+    batch: any;
+    loss: any;
+    accuracy: any;
+    set: string
+}
 
-    constructor(props: any) {
+class Progress extends Component<ProgressProps, any> {
+    private lossRef = React.createRef<HTMLDivElement>();
+    private accuracyRef = React.createRef<HTMLDivElement>();
+    private lossValues: any = [[], []];
+    private accuracyValues: any = [[], []];
+
+    constructor(props: ProgressProps) {
         super(props);
-        this.lossRef = React.createRef();
-        this.accuracyRef = React.createRef();
     }
 
     plotLoss() {

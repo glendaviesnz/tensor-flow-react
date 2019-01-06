@@ -4,7 +4,7 @@ import Progress from './Progress';
 
 import { startTraining } from './model';
 
-interface TrainState {
+type TrainState = {
     status: string;
     trainBatchCount: any;
     loss: any;
@@ -69,7 +69,6 @@ class Train extends Component<any, TrainState> {
                     </section>
                 </div>
                 <Progress
-                    className="progress"
                     loss={this.state.loss}
                     accuracy={this.state.accuracy}
                     set={this.state.set}
