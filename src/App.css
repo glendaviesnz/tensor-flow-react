@@ -8,8 +8,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  height: 80px;
+  background-color: #00004d;
+  height: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,6 +24,18 @@
 
 #train {
   margin-top: 10px;
+  height: 24px;
+  border: 1px solid #00004d;
+}
+#train:hover {
+  background-color: #cccccc;;
+}
+
+#train-epochs, #model-type {
+  height: 24px;
+  border: 1px solid #00004d;
+  padding: 1px 7px 2px;
+  border-radius: 0px;
 }
 
 label {
@@ -68,8 +80,37 @@ label {
   display: flex;
   text-align: left;
   padding: 32px;
+  justify-content: center;
 }
 
 .details {
   margin-right: 32px;
+  padding-top: 24px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  padding: 24px;
+  width: 300px;
+}
+h2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.card h2 {
+  margin-top: 0px;
+}
+
+.button {
+  width: 100%;
+  text-align: center;
+}
+
+.field-set {
+  margin-bottom: 12px;
 }

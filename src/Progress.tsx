@@ -3,7 +3,7 @@ import * as tfvis from '@tensorflow/tfjs-vis';
 
 type ProgressProps = {
     status: string;
-    batch: number;
+    batchCount: number;
     loss: number;
     accuracy: number;
     set: string
@@ -21,7 +21,7 @@ class Progress extends Component<ProgressProps> {
 
     plotLoss() {
         const series = this.props.set === 'train' ? 0 : 1;
-        this.lossValues[series].push({ x: this.props.batch, y: this.props.loss });
+        this.lossValues[series].push({ x: this.props.batchCount, y: this.props.loss });
         const lossContainer = this.lossRef.current;
         tfvis.render.linechart(
             { values: this.lossValues, series: ['train', 'validation'] }, lossContainer, {
@@ -35,7 +35,7 @@ class Progress extends Component<ProgressProps> {
     plotAccuracy() {
         const accuracyContainer = this.accuracyRef.current;
         const series = this.props.set === 'train' ? 0 : 1;
-        this.accuracyValues[series].push({ x: this.props.batch, y: this.props.accuracy });
+        this.accuracyValues[series].push({ x: this.props.batchCount, y: this.props.accuracy });
         tfvis.render.linechart(
             { values: this.accuracyValues, series: ['train', 'validation'] },
             accuracyContainer, {
@@ -47,14 +47,16 @@ class Progress extends Component<ProgressProps> {
     }
 
     componentDidUpdate() {
-        this.plotLoss();
-        this.plotAccuracy();
+        if (this.props.batchCount)  {
+            this.plotLoss();
+            this.plotAccuracy();
+        }
     }
 
     render() {
         return (
-            <section className="training-progress">
-                <p className='section-head'>Training Progress</p>
+            <section className="card">
+                <h2>Training Progress</h2>
                 <p>{this.props.status}</p>
                 <div id="stats">
                     <div className="canvases">

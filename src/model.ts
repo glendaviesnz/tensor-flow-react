@@ -109,7 +109,7 @@ function createDenseModel() {
  *
  * @param {*} model The model to
  */
-async function train(model: any, setState: any) {
+async function train(model: any, setState: any, trainingEpochs: number) {
   // ui.logStatus('Training model...');
 
   // Now that we've defined our model, we will define our optimizer. The
@@ -162,7 +162,7 @@ async function train(model: any, setState: any) {
   const validationSplit = 0.15;
 
   // Get number of training epochs from the UI.
- const trainEpochs = 1;
+ const trainEpochs = trainingEpochs;
 
   // We'll keep a buffer of loss and accuracy values over time.
   let trainBatchCount = 0;
@@ -299,14 +299,15 @@ async function load() {
 //   await train(model, () => showPredictions(model));
 // });
  
-export const startTraining  = async (setState: any) => {
+export const startTraining  = async (setState: Function, trainingEpochs: number, modelType: string) => {
+
   console.log('Loading MNIST data...');
   await load();
 
   console.log('Creating model...');
-  const model = createModel('ConvNet');
+  const model = createModel(modelType);
   model.summary();
 
   console.log('Starting model training...');
-  await train(model, setState);
+  await train(model, setState, trainingEpochs);
 };

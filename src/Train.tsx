@@ -9,7 +9,9 @@ type TrainState = {
     trainBatchCount: number;
     loss: number;
     accuracy: number;
-    set: string
+    set: string;
+    trainingEpochs: number;
+    modelType: string;
 }
 type TrainProps = {}
 
@@ -21,61 +23,57 @@ class Train extends Component<TrainProps, TrainState> {
             trainBatchCount: null,
             loss: null,
             accuracy: null,
-            set: null
+            set: null,
+            trainingEpochs: 3,
+            modelType: 'ConvNet'
         };
     }
 
     start = () => {
-        startTraining(this.updateState);
+        startTraining(this.updateState, this.state.trainingEpochs, this.state.modelType);
     }
 
     updateState = (value: any) => {
         this.setState(value);
     }
-    
+
     render() {
         return (
             <div className="train">
                 <div className="details">
-                    <section className='title-area'>
-                        <h1>TensorFlow.js: Digit Recognizer with Layers</h1>
-                        <p className='subtitle'>Train a model to recognize handwritten digits from the MNIST database using the tf.layers
-                          api.
-                    </p>
-                    </section>
-
                     <section>
-                        <p className='section-head'>Description</p>
-                        <p>
-                            This examples lets you train a handwritten digit recognizer using either a Convolutional Neural Network
-                            (also known as a ConvNet or CNN) or a Fully Connected Neural Network (also known as a DenseNet).
-                    </p>
-                        <p>The MNIST dataset is used as training data.</p>
-                    </section>
-
-                    <section>
-                        <p className='section-head'>Training Parameters</p>
-                        <div>
+                        <h2>Training Parameters</h2>
+                        <div className="field-set">
                             <label>Model Type:</label>
-                            <select id="model-type">
+                            <select id="model-type" 
+                            onChange={evt => this.updateState({
+                                modelType: evt.target.value
+                              })}>
                                 <option>ConvNet</option>
                                 <option>DenseNet</option>
                             </select>
                         </div>
 
-                        <div>
-                            <label># of training epochs:</label>
-                            <input id="train-epochs" defaultValue="3" />
+                        <div className="field-set">
+                            <label>No. of training epochs:</label>
+                            <input id="train-epochs" 
+                              onChange={evt => this.updateState({
+                                trainingEpochs: evt.target.value
+                              })}
+                              value={this.state.trainingEpochs} 
+                            
+                            />
                         </div>
-
-                        <button id="train" onClick={() => this.start()}>Load Data and Train Model</button>
+                        <div className="button">
+                            <button id="train" onClick={() => this.start()}>Load Data and Train Model</button>
+                        </div>
                     </section>
                 </div>
                 <Progress
                     loss={this.state.loss}
                     accuracy={this.state.accuracy}
                     set={this.state.set}
-                    batch={this.state.trainBatchCount}
+                    batchCount={this.state.trainBatchCount}
                     status={this.state.status}
                 />
             </div>
